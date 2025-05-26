@@ -1,0 +1,17 @@
+# Node modules
+node_modules/
+
+# Credential file
+credentials.json
+tokens/
+# Env & config
+.env
+.DS_Store
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Mac system files
+*.log
