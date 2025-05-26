@@ -14,15 +14,19 @@ function startBot(client) {
   client.onMessage(async (message) => {
     const text = message.body.toLowerCase();
 
-    if (text === "lapor zakat") {
+    if (
+      text === "lapor zakat" ||
+      text === "Lapor Zakat" ||
+      text === "Lapor zakat"
+    ) {
       await client.sendText(
         message.from,
-        `Silakan isi data laporan berikut:\n` +
-          `Format:\nNama, Tanaman, Panen(kg), Irigasi, Biaya(Rp), Harga(Kg)\n` +
-          `Contoh:\nAhmad, Padi, 1000, air hujan, 2000000, 6000 \n \n` +
-          "kategori irigasi: \n" +
-          "irigasi buatan : pompa, sumur, manual \n" +
-          "irigasi alami : hujan, sungai, aliran, alam"
+        `Silakan isi data laporan berikut, dengan format:\n` +
+          `\nNama, Tanaman Pertanian, Hasil Panen(Kg), Jenis irigasi, Biaya operasional(Rp), Harga jual(Kg)\n` +
+          `Contoh:\nAnnisa, Jagung, 1150, hujan, 3455000, 6300 \n \n` +
+          "Jenis irigasi: \n" +
+          "Irigasi buatan : Sumur, Pompa, Manual \n" +
+          "Irigasi alami : Hujan, sungai, aliran, alam"
       );
       return;
     }
@@ -47,8 +51,8 @@ function startBot(client) {
 
         const replyMsg =
           `✅ Zakat yang wajib dikeluarkan oleh *${nama}*:\n` +
-          `- Zakat (Kg): ${hasil.zakatKg} Kg\n` +
-          `- Zakat (Rp): Rp ${hasil.zakatRp}`;
+          `- Zakat Wajib (Kg): ${hasil.zakatKg} Kg\n` +
+          `- Zakat Wajib (Rp): Rp. ${hasil.zakatRp}`;
 
         await appendZakatToSheet({
           nomorHP: message.from.replace(/@c\.us$/, ""),

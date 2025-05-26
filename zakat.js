@@ -1,13 +1,11 @@
 function hitungZakat({
   hasilPanenKg,
   jenisIrigasi,
-  biayaOperasional,
+
   hargaPerKg,
 }) {
-  const labaKotor = hasilPanenKg * hargaPerKg;
-  const batasBiaya = 0.33 * labaKotor;
-  const biayaValid = Math.min(biayaOperasional, batasBiaya);
-  const labaBersih = labaKotor - biayaValid;
+  // Hitung potongan maksimal biaya operasional sebagai 1/3 dari hasil panen dalam kg
+  const batasPotonganKg = hasilPanenKg * (1 / 3); // Bisa diganti jadi 1/4 jika perlu
 
   const irigasiBuatan = [
     "buatan",
@@ -37,8 +35,8 @@ function hitungZakat({
     );
   }
 
-  const zakatRp = labaBersih * persenZakat;
-  const zakatKg = zakatRp / hargaPerKg;
+  const zakatKg = (hasilPanenKg - batasPotonganKg) * persenZakat;
+  const zakatRp = zakatKg * hargaPerKg;
 
   return {
     zakatKg: zakatKg.toFixed(2),
